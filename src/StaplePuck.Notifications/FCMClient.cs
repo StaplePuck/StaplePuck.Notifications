@@ -37,8 +37,8 @@ namespace StaplePuck.Notifications
                 Notification = new FirebaseAdmin.Messaging.Notification
                 {
                     Title = message.notification.title,
-                    Body = message.notification.text,
-                    ImageUrl = "https://www.staplepuck.com/img/StaplePuckLogo.fea5ec08.png"
+                    Body = message.notification.text
+                    //ImageUrl = "https://www.staplepuck.com/img/StaplePuckLogo.fea5ec08.png"
                 }
             };
 
