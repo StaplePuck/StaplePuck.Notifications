@@ -16,7 +16,7 @@ namespace StaplePuck.Notifications
             foreach (var teamUpdated in updated.FantansyTeamChanges)
             {
                 var teamInfo = league.FantasyTeams.FirstOrDefault(x => x.Id == teamUpdated.FantasyTeamId);
-                if (teamInfo.GM.ReceiveNotifications && teamInfo.GM.NotificationTokens.Count() > 0)
+                if (teamInfo.GM.ReceiveNotifications && teamInfo.GM.NotificationTokens.Count() > 0 && teamInfo.IsPaid)
                 {
                     var builder = new StringBuilder();
                     foreach (var player in teamInfo.FantasyTeamPlayers)
@@ -37,7 +37,14 @@ namespace StaplePuck.Notifications
                                 }
                             }
                             var scoreList = string.Join(", ", types);
-                            builder.AppendLine($"{player.Player.FullName} awarded: {scoreList}");
+                            if (!string.IsNullOrEmpty(scoreList))
+                            {
+                                builder.AppendLine($"{player.Player.FullName} awarded: {scoreList}");
+                            }
+                            else
+                            {
+                                // log warning
+                            }
                         }
                     }
                     if (teamUpdated.CurrentRank < teamUpdated.OldRank)
