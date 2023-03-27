@@ -23,6 +23,7 @@ namespace StaplePuck.Notifications
     fantasyTeams {
       id
       name
+      isPaid
       gM {
         name
         receiveNotifications
