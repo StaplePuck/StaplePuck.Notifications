@@ -19,6 +19,6 @@
     <PackageReference Include="Amazon.Lambda.SQSEvents" Version="2.1.0" />
     <PackageReference Include="FirebaseAdmin" Version="2.3.0" />
     <PackageReference Include="Microsoft.Extensions.Configuration.EnvironmentVariables" Version="7.0.0" />
-    <PackageReference Include="StaplePuck.Core" Version="2.0.0-alpha.180" />
+    <PackageReference Include="StaplePuck.Core" Version="2.0.0" />
   </ItemGroup>
 </Project>
