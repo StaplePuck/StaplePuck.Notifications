@@ -6,8 +6,8 @@ namespace StaplePuck.Notifications
 {
     public class Message
     {
-        public string[] registration_ids { get; set; }
-        public Notification notification { get; set; }
-        public object data { get; set; }
+        public string[] registration_ids { get; set; } = Array.Empty<string>();
+        public Notification notification { get; set; } =  new Notification();
+        public object data { get; set; } = new object();
     }
 }
