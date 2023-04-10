@@ -1,13 +1,14 @@
 ﻿using StaplePuck.Core.Fantasy;
 using System;
 using System.Collections.Generic;
+using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
 namespace StaplePuck.Notifications
 {
-    public interface IScoreProvider
+    internal class LeagueResponse
     {
-        Task<League?> GetLeagueScores(int leagueId);
+        public League[] Leagues { get; set; } = Array.Empty<League>();
     }
 }

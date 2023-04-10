@@ -1,0 +1,78 @@
+{
+  "AWSTemplateFormatVersion" : "2010-09-09",
+  "Transform" : "AWS::Serverless-2016-10-31",
+  "Description" : "The serverless application for the StaplePuck Notifications Service",
+  "Parameters" : {
+    "Auth0Audience": {
+        "Type": "String"
+    },
+    "Auth0ClientId": {
+        "Type": "String"
+    },
+    "Auth0ClientSecret": {
+        "Type": "String"
+    },
+    "Auth0TokenUrl": {
+        "Type": "String"
+    },
+    "StaplePuckEndpoint": {
+        "Type": "String"
+    },
+    "FCMSenderId": {
+        "Type": "String"
+    },
+    "FCMSecretKey": {
+        "Type": "String"
+    },
+    "FCMFirbasePushNotificationURL": {
+        "Type": "String"
+    }
+  },
+  "Resources" : {
+    "NotificationsFunction" : {
+      "Type" : "AWS::Serverless::Function",
+      "Properties": {
+        "Handler": "StaplePuck.Notifications::StaplePuck.Notifications.Function::FunctionHandler",
+        "Runtime": "dotnet6",
+        "CodeUri": "",
+        "Description": "Notifications Service",
+        "MemorySize": 256,
+        "Timeout": 45,
+        "Role": null,
+        "Policies": [ "AWSLambda_FullAccess" ],
+        "Environment": {
+            "Variables": {
+                "Auth0__Audience": { "Ref" : "Auth0Audience" },
+                "Auth0__ClientIdHOLD": { "Ref" : "Auth0ClientId" },
+                "Auth0__ClientSecret": { "Ref" : "Auth0ClientSecret" },
+                "Auth0__TokenUrl": { "Ref" : "Auth0TokenUrl" },
+                "StaplePuck__Endpoint": { "Ref" : "StaplePuckEndpoint" },
+                "FCM__SenderId": { "Ref" : "FCMSenderId" },
+                "FCM__SecretKey": { "Ref" : "FCMSecretKey" },
+                "FCM__FirbasePushNotificationURL": { "Ref" : "FCMFirbasePushNotificationURL" }
+            }
+        },
+        "Events": {
+            "SQSEvent": {
+                "Type": "SQS",
+                "Properties": {
+                    "Queue": { "Fn::GetAtt": ["NotificationsQueue", "Arn"] }
+                }
+            }
+        }
+      }
+    },
+    "NotificationsQueue": {
+      "Type": "AWS::SQS::Queue",
+      "Properties": {
+          "VisibilityTimeout": 45
+      }
+    }
+  },
+  "Outputs" : {
+    "NotificationQueueArn" : {
+        "Description" : "The SQS Queue that is connected to the Notification Service",
+        "Value" : { "Fn::GetAtt": ["NotificationsQueue", "Arn"] }
+    }
+  }
+}

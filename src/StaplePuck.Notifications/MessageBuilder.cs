@@ -16,7 +16,7 @@ namespace StaplePuck.Notifications
             foreach (var teamUpdated in updated.FantansyTeamChanges)
             {
                 var teamInfo = league.FantasyTeams.FirstOrDefault(x => x.Id == teamUpdated.FantasyTeamId);
-                if (teamInfo.GM.ReceiveNotifications && teamInfo.GM.NotificationTokens.Count() > 0 && teamInfo.IsPaid)
+                if (teamInfo?.GM != null && teamInfo.GM.ReceiveNotifications && teamInfo.GM.NotificationTokens.Count() > 0 && teamInfo.IsPaid)
                 {
                     var builder = new StringBuilder();
                     foreach (var player in teamInfo.FantasyTeamPlayers)
@@ -29,7 +29,7 @@ namespace StaplePuck.Notifications
                             {
                                 if (scoreType.CurrentScore > scoreType.OldScore)
                                 {
-                                    var typeInfo = league.Season.Sport.ScoringTypes.FirstOrDefault(x => x.Id == scoreType.ScoreTypeId);
+                                    var typeInfo = league?.Season?.Sport?.ScoringTypes.FirstOrDefault(x => x.Id == scoreType.ScoreTypeId);
                                     if (typeInfo != null)
                                     {
                                         types.Add(typeInfo.Name);
@@ -39,7 +39,7 @@ namespace StaplePuck.Notifications
                             var scoreList = string.Join(", ", types);
                             if (!string.IsNullOrEmpty(scoreList))
                             {
-                                builder.AppendLine($"{player.Player.FullName} awarded: {scoreList}");
+                                builder.AppendLine($"{player?.Player?.FullName} awarded: {scoreList}");
                             }
                             else
                             {

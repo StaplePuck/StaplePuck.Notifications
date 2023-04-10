@@ -31,7 +31,7 @@ namespace StaplePuck.Notifications
                 .AddStaplePuckClient(configuration)
                 .BuildServiceProvider();
 
-            return serviceProvider.GetService<MessageHandler>();
+            return serviceProvider.GetRequiredService<MessageHandler>();
         }
 
         private readonly IMessageBuilder _messageBuilder;
@@ -48,7 +48,7 @@ namespace StaplePuck.Notifications
         public async Task<bool> ProcessMessage(string message)
         {
             var update = JsonConvert.DeserializeObject<ScoreUpdated>(message);
-            if (update.PlayersScoreUpdated == null)
+            if (update?.PlayersScoreUpdated == null)
             {
                 Console.Out.WriteLine($"Warning: message is in wrong format. {message}");
                 return true;
@@ -60,10 +60,13 @@ namespace StaplePuck.Notifications
             }
             var league = await _scoreProvider.GetLeagueScores(update.LeagueId);
 
-            var messages = _messageBuilder.BuildMessages(update, league);
-            foreach (var item in messages)
+            if (league != null)
             {
-                await _fCMClient.SendNotification(item);
+                var messages = _messageBuilder.BuildMessages(update, league);
+                foreach (var item in messages)
+                {
+                    await _fCMClient.SendNotification(item);
+                }
             }
 
             return true;

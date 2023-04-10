@@ -329,5 +329,3 @@ ASALocalRun/
 # MFractors (Xamarin productivity tool) working folder 
 .mfractor/
 /Calculator.env
-/src/StaplePuck.Notifications/aws-lambda-tools-defaults.json
-/src/StaplePuck.Notifications/firebase-adminsdk.json

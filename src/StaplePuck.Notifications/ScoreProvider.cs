@@ -47,20 +47,21 @@ namespace StaplePuck.Notifications
             _staplePuckClient = client;
         }
 
-        public async Task<League> GetLeagueScores(int leagueId)
+        public async Task<League?> GetLeagueScores(int leagueId)
         {
             var variables = new ExpandoObject() as IDictionary<string, object>;
-            variables.Add("leagueId", leagueId.ToString());
+            variables.Add("leagueId", leagueId);
 
-            var result = await _staplePuckClient.GetAsync<League>(LEAGUE_QUEURY, variables);
+            var result = await _staplePuckClient.GetAsync<LeagueResponse>(LEAGUE_QUEURY, variables);
 
-            if (result.Length == 0)
-            {
-                return null;
-            }
+            return result?.Leagues.FirstOrDefault();
+            //if (result.Length == 0)
+            //{
+            //    return null;
+            //}
 
-            var league = result[0];
-            return league;
+            //var league = result[0];
+            //return league;
         }
     }
 }
