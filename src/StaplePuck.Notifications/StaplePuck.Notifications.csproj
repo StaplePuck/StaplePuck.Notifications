@@ -9,10 +9,8 @@
   </PropertyGroup>
   <ItemGroup>
     <None Remove="firebase-adminsdk.json" />
-    <None Remove="firebase-adminsdk.json.template" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="firebase-adminsdk.json.template" />
     <EmbeddedResource Include="firebase-adminsdk.json" />
   </ItemGroup>
   <ItemGroup>
