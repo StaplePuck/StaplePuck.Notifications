@@ -1,9 +1,11 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio Version 16
-VisualStudioVersion = 16.0.30114.105
+# Visual Studio Version 17
+VisualStudioVersion = 17.6.33801.468
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "StaplePuck.Notifications", "src\StaplePuck.Notifications\StaplePuck.Notifications.csproj", "{7F380937-F608-43B9-B49E-0FE0371BC882}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "StaplePuck.Notifications.Tests", "test\StaplePuck.Notifications.Tests\StaplePuck.Notifications.Tests.csproj", "{FFE183DF-472C-4F7B-AEC0-C088DD9B4D92}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -15,6 +17,10 @@ Global
 		{7F380937-F608-43B9-B49E-0FE0371BC882}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{7F380937-F608-43B9-B49E-0FE0371BC882}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{7F380937-F608-43B9-B49E-0FE0371BC882}.Release|Any CPU.Build.0 = Release|Any CPU
+		{FFE183DF-472C-4F7B-AEC0-C088DD9B4D92}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{FFE183DF-472C-4F7B-AEC0-C088DD9B4D92}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{FFE183DF-472C-4F7B-AEC0-C088DD9B4D92}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{FFE183DF-472C-4F7B-AEC0-C088DD9B4D92}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
