@@ -26,8 +26,8 @@ public class MessageBuilderTests
     {
         // arrange
         var scoreUpdated = new ScoreUpdated 
-        { 
-            FantansyTeamChanges = new FantansyTeamChanged[] { new FantansyTeamChanged { FantasyTeamId = 1 } }
+        {
+            FantasyTeamChanges = new FantasyTeamChanged[] { new FantasyTeamChanged { FantasyTeamId = 1 } }
         };
         var league = new League { };
         var messageBuilder = new MessageBuilder();

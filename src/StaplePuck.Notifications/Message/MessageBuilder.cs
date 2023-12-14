@@ -9,7 +9,7 @@ public class MessageBuilder : IMessageBuilder
     public IEnumerable<NotificationMessage> BuildMessages(ScoreUpdated updated, League league)
     {
         var messages = new List<NotificationMessage>();
-        foreach (var teamUpdated in updated.FantansyTeamChanges)
+        foreach (var teamUpdated in updated.FantasyTeamChanges)
         {
             var teamInfo = league.FantasyTeams.FirstOrDefault(x => x.Id == teamUpdated.FantasyTeamId);
             if (teamInfo?.GM != null && teamInfo.GM.ReceiveNotifications && teamInfo.GM.NotificationTokens.Count() > 0 && teamInfo.IsPaid)

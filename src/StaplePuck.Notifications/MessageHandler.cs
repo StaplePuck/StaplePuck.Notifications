@@ -5,9 +5,10 @@ using StaplePuck.Core.Auth;
 using StaplePuck.Core.Client;
 using StaplePuck.Core.Models;
 using StaplePuck.Notifications.Firebase;
+using StaplePuck.Notifications.Message;
 using StaplePuck.Notifications.Score;
 
-namespace StaplePuck.Notifications.Message;
+namespace StaplePuck.Notifications;
 
 public class MessageHandler
 {
@@ -50,7 +51,7 @@ public class MessageHandler
             return true;
         }
 
-        if (update.PlayersScoreUpdated.Count() == 0 && update.FantansyTeamChanges.Count() == 0)
+        if (update.PlayersScoreUpdated.Count() == 0 && update.FantasyTeamChanges.Count() == 0)
         {
             return true;
         }
