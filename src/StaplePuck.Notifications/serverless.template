@@ -65,7 +65,21 @@
     "NotificationsQueue": {
       "Type": "AWS::SQS::Queue",
       "Properties": {
-          "VisibilityTimeout": 45
+        "VisibilityTimeout": 45
+      }
+    },
+    "NotificationsQueuePolicy": {
+      "Type": "AWS::SQS:QueuePolicy",
+      "Properties": {
+        "Queues": [ { "Fn::GetAtt": [ "NotificationsQueue", "Arn" ] } ],
+        "PolicyDocument": {
+          "Statement": {
+            "Effect": "Allow",
+            "Principal": "*",
+            "Action": "sqs:*",
+            "Resource": "*"
+          }
+        }
       }
     }
   },
