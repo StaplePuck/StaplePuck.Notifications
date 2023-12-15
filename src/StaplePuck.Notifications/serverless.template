@@ -75,9 +75,11 @@
         "PolicyDocument": {
           "Statement": {
             "Effect": "Allow",
-            "Principal": "*",
-            "Action": "sqs:*",
-            "Resource": "*"
+            "Principal": {
+              "Service": "sns.amazonaws.com"
+            },
+            "Action": "sqs:SendMessage",
+            "Resource": { "Fn::GetAtt": [ "NotificationsQueue", "Arn" ] }
           }
         }
       }
