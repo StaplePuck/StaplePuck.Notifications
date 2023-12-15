@@ -71,7 +71,7 @@
     "NotificationsQueuePolicy": {
       "Type": "AWS::SQS::QueuePolicy",
       "Properties": {
-        "Queues": [ { "Fn::Ref": "NotificationsQueue" } ],
+        "Queues": [ { "Ref": "NotificationsQueue" } ],
         "PolicyDocument": {
           "Statement": {
             "Effect": "Allow",
