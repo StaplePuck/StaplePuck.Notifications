@@ -35,7 +35,7 @@ public class FCMClient : IFCMClient
 
         // Send a message to the device corresponding to the provided
         // registration token.
-        var response = await FirebaseMessaging.DefaultInstance.SendMulticastAsync(fireMessage);
+        var response = await FirebaseMessaging.DefaultInstance.SendEachForMulticastAsync(fireMessage);
         // Response is a message ID string.
         Console.WriteLine($"{response.SuccessCount} messages were sent successfully");
         if (response.FailureCount > 0)
