@@ -21,7 +21,7 @@ namespace StaplePuck.Notifications.Message
 
         public NotificationMessage? BuildMessage(FantasyTeam fantasyTeam, FantasyTeamChanged fantasyTeamChanged, IEnumerable<PlayerScoreUpdated> playerScoreUpdated, IEnumerable<ScoringType> scoringTypes)
         {
-            if (fantasyTeam?.GM != null && fantasyTeam.GM.ReceiveNotifications && fantasyTeam.GM.NotificationTokens.Count() > 0 && fantasyTeam.IsPaid)
+            if (fantasyTeam?.GM != null && fantasyTeam.GM.ReceiveNotifications && fantasyTeam.GM.NotificationTokens.Count() > 0 && fantasyTeam.FantasyTeamPlayers != null && fantasyTeam.IsPaid)
             {
                 var builder = new StringBuilder();
                 foreach (var player in fantasyTeam.FantasyTeamPlayers)
