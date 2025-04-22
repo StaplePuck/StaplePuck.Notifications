@@ -11,8 +11,8 @@ public class MessageBuilder : IMessageBuilder
         var messages = new List<NotificationMessage>();
         foreach (var teamUpdated in updated.FantasyTeamChanges)
         {
-            var teamInfo = league.FantasyTeams.FirstOrDefault(x => x.Id == teamUpdated.FantasyTeamId);
-            if (teamInfo?.GM != null && teamInfo.GM.ReceiveNotifications && teamInfo.GM.NotificationTokens.Count() > 0 && teamInfo.IsPaid)
+            var teamInfo = league?.FantasyTeams.FirstOrDefault(x => x.Id == teamUpdated.FantasyTeamId);
+            if (teamInfo?.GM != null && teamInfo.GM.ReceiveNotifications && teamInfo.GM.NotificationTokens.Count() > 0 && teamInfo.FantasyTeamPlayers != null && teamInfo.IsPaid)
             {
                 var builder = new StringBuilder();
                 foreach (var player in teamInfo.FantasyTeamPlayers)
